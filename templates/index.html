@@ -1,0 +1,38 @@
+{% extends 'main.html' %} 
+{% load static %}
+    {% block title%}
+    <title>Home Page</title>
+    {% endblock title%}
+    {% block body %}
+{%for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message!</strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<div class='container my-4'>
+<img class='container ' src="{% static 'img/mywebsite.jpg' %}" style='height:600px;'></div>
+<div class="row mb-2 my-4 mx-4">
+{% for blog in blogs %}
+    
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-primary">World</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">{{blog.title}}</a>
+          </h3>
+          <div class="mb-1 text-muted">{{blog.date_time}}</div>
+          <h5>Author Name:- {{blog.user_id}}</h5>
+          <p class="card-text mb-auto">{{blog.content|safe|truncatewords:"20"|linebreaks}}</p>
+          
+          <a href="blog_detail/{{blog.id}}" class="stretched-link btn btn-success">Continue reading</a>
+        </div>
+          <img src="{{blog.Img.url}}"  style="width: 200px; height: 250px;" data-holder-rendered="true">
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+    
+    {% endblock body %}

@@ -1,0 +1,36 @@
+{% extends 'main.html' %} 
+    {% block title%}
+    <title>Login page</title>
+    {% endblock title%}
+ 
+ {% block body %}
+
+{%for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message!</strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+  <h1><center>Login Now</center></h1> 
+  <div class="container my-4">
+<form class="row g-3 " method='POST' action='login'>
+{% csrf_token %}
+<div class="col-md-12">
+    <label for="inputCity" class="form-label">Username</label>
+    <input type="text" class="form-control" id="inputCity" placeholder="Username" name='uname'>
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4" name='password'>
+  </div>
+ 
+  
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Login</button>
+  </div>
+  
+  
+</form>
+</div>
+{% endblock body %}
